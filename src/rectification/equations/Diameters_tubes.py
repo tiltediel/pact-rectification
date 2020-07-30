@@ -47,7 +47,7 @@ def w_liq_real_enter_feed(F_mass, d_enter_feed_real, rho_F_20):
     ----------
     &&&
     """  
-    return F_mass/((d_enter_feed_real^2)*rho_F_20*0,785)
+    return F_mass/((d_enter_feed_real**2)*rho_F_20*0,785)
 
 
 @unitcheck(F_mass="kg/s", rho_F_tboil="kg/m**3", w_liq="m/s", res_unit="m")
@@ -93,7 +93,7 @@ def w_liq_real_feed_column(F_mass, d_enter_feed_column_real, rho_F_tboil):
     ----------
     &&&
     """  
-    return F_mass/((d_enter_feed_column_real^2)*rho_F_tboil*0,785)
+    return F_mass/((d_enter_feed_column_real**2)*rho_F_tboil*0,785)
 
 
 @unitcheck(G_mass="kg/s", rho_P_vapor="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -139,7 +139,7 @@ def w_vapor_real_out_dist(G_mass, d_out_dist_real, rho_P_vapor):
     ----------
     &&&
     """  
-    return G_mass/((d_out_dist_real^2)*rho_P_vapor*0,785)
+    return G_mass/((d_out_dist_real**2)*rho_P_vapor*0,785)
 
 
 @unitcheck(Reflux_mass="kg/s", rho_P_liq="kg/m**3", w_liq="m/s", res_unit="m")
@@ -185,7 +185,7 @@ def w_enter_reflux_real(Reflux_mass, rho_P_liq, d_enter_reflux_real):
     ----------
     &&&
     """  
-    return Reflux_mass/((d_enter_reflux_real^2)*rho_P_liq*0,785)
+    return Reflux_mass/((d_enter_reflux_real**2)*rho_P_liq*0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_W_liq="kg/m**3", w_liq_drift="m/s", res_unit="m")
@@ -231,7 +231,7 @@ def w_enter_waste_boiler_real(W_mass, rho_W_liq, d_enter_waste_boiler_real):
     ----------
     &&&
     """  
-    return W_mass/((d_enter_waste_boiler_real^2)*rho_W_liq*0,785)
+    return W_mass/((d_enter_waste_boiler_real**2)*rho_W_liq*0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_W_vapor="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -277,7 +277,7 @@ def w_out_waste_boiler_real(W_mass, rho_W_vapor, d_out_waste_boiler_real):
     ----------
     &&&
     """  
-    return W_mass/((d_out_waste_boiler_real^2)*rho_W_vapor*0,785)
+    return W_mass/((d_out_waste_boiler_real**2)*rho_W_vapor*0,785)
 
 
 @unitcheck(m_steam_boil="kg/s", rho_steam="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -323,7 +323,7 @@ def w_enter_steam_boiler_real(m_steam_boil, rho_steam_vapor, d_enter_steam_boile
     ----------
     &&&
     """  
-    return m_steam_boil/((d_enter_steam_boiler_real^2)*rho_steam_vapor*0,785)
+    return m_steam_boil/((d_enter_steam_boiler_real**2)*rho_steam_vapor*0,785)
 
 
 @unitcheck(m_steam_boil="kg/s", rho_water_liq="kg/m**3", w_drift="m/s", res_unit="m")
@@ -369,7 +369,7 @@ def w_out_cond_boiler_real(m_steam_boil, rho_water_liq, d_out_cond_boiler_real):
     ----------
     &&&
     """  
-    return m_steam_boil/((d_out_cond_boiler_real^2)*rho_water_liq*0,785)
+    return m_steam_boil/((d_out_cond_boiler_real**2)*rho_water_liq*0,785)
 
 
 @unitcheck(m_steam_feed="kg/s", rho_steam="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -415,7 +415,7 @@ def w_enter_steam_feed_real(m_steam_feed, rho_steam_vapor, d_enter_steam_feed_re
     ----------
     &&&
     """  
-    return m_steam_feed/((d_enter_steam_feed_real^2)*rho_steam_vapor*0,785)
+    return m_steam_feed/((d_enter_steam_feed_real**2)*rho_steam_vapor*0,785)
 
 
 @unitcheck(m_steam_feed="kg/s", rho_water_liq="kg/m**3", w_drift="m/s", res_unit="m")
@@ -461,7 +461,7 @@ def w_out_cond_feed_real(m_steam_feed, rho_water_liq, d_out_cond_feed_real):
     ----------
     &&&
     """  
-    return m_steam_feed/((d_out_cond_feed_real^2)*rho_water_liq*0,785)
+    return m_steam_feed/((d_out_cond_feed_real**2)*rho_water_liq*0,785)
 
 
 @unitcheck(G_mass="kg/s", rho_dist="kg/m**3", w_drift="m/s", res_unit="m")
@@ -507,7 +507,7 @@ def w_out_deph_real(G_mass,rho_dist, d_out_deph_real):
     ----------
     &&&
     """  
-    return G_mass/((d_out_deph_real^2)*rho_dist*0,785)
+    return G_mass/((d_out_deph_real**2)*rho_dist*0,785)
 
 
 @unitcheck(P_mass="kg/s", rho_dist="kg/m**3", w_drift="m/s", res_unit="m")
@@ -553,7 +553,7 @@ def w_enter_dist_cooler_real(P_mass, rho_dist , d_enter_dist_cooler_real):
     ----------
     &&&
     """  
-    return P_mass/((d_enter_dist_cooler_real^2)*rho_dist *0,785)
+    return P_mass/((d_enter_dist_cooler_real**2)*rho_dist *0,785)
 
 
 @unitcheck(P_mass="kg/s", rho_dist_cool="kg/m**3", w_drift="m/s", res_unit="m")
@@ -599,7 +599,7 @@ def w_out_dist_cooler_real(P_mass, rho_dist_cool , d_out_dist_cooler_real):
     ----------
     &&&
     """  
-    return P_mass/((d_out_dist_cooler_real^2)*rho_dist_cool *0,785)
+    return P_mass/((d_out_dist_cooler_real**2)*rho_dist_cool *0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_waste="kg/m**3", w_drift="m/s", res_unit="m")
@@ -645,7 +645,7 @@ def w_enter_waste_cooler_real(W_mass, rho_waste , d_enter_waste_cooler_real):
     ----------
     &&&
     """  
-    return W_mass/((d_enter_waste_cooler_real^2)*rho_waste *0,785)
+    return W_mass/((d_enter_waste_cooler_real**2)*rho_waste *0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_waste_cool="kg/m**3", w_drift="m/s", res_unit="m")
@@ -691,7 +691,7 @@ def w_out_waste_cooler_real(W_mass, rho_waste_cool , d_out_waste_cooler_real):
     ----------
     &&&
     """  
-    return W_mass/((d_out_waste_cooler_real^2)*rho_waste_cool *0,785)
+    return W_mass/((d_out_waste_cooler_real**2)*rho_waste_cool *0,785)
 
 
 @unitcheck(m_coolwater_dist="kg/s", rho_dist_coolwater="kg/m**3", w_liq="m/s", res_unit="m")
@@ -737,7 +737,7 @@ def w_dist_coolwater_real(m_coolwater_dist, rho_dist_coolwater , d_dist_coolwate
     ----------
     &&&
     """  
-    return m_coolwater_dist/((d_dist_coolwater_real^2)*rho_dist_coolwater *0,785)
+    return m_coolwater_dist/((d_dist_coolwater_real**2)*rho_dist_coolwater *0,785)
 
 
 @unitcheck(m_coolwater_waste="kg/s", rho_waste_coolwater="kg/m**3", w_liq="m/s", res_unit="m")
@@ -783,7 +783,7 @@ def w_waste_coolwater_real(m_coolwater_waste, rho_waste_coolwater , d_waste_cool
     ----------
     &&&
     """  
-    return m_coolwater_waste/((d_waste_coolwater_real^2)*rho_waste_coolwater *0,785)
+    return m_coolwater_waste/((d_waste_coolwater_real**2)*rho_waste_coolwater *0,785)
 
 
 @unitcheck(m_coolwater_deph="kg/s", rho_deph_coolwater="kg/m**3", w_liq="m/s", res_unit="m")
@@ -829,5 +829,5 @@ def w_deph_coolwater_real(m_coolwater_deph, rho_deph_coolwater , d_deph_coolwate
     ----------
     &&&
     """  
-    return m_coolwater_deph/((d_deph_coolwater_real^2)*rho_deph_coolwater *0,785)
+    return m_coolwater_deph/((d_deph_coolwater_real**2)*rho_deph_coolwater *0,785)
 

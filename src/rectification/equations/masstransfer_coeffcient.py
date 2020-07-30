@@ -213,6 +213,7 @@ def epsi_vapor_bot(Fr_bot):
     return Fr_bot**0.5 / (1 + Fr_bot**0.5)  
 
 
+@unitcheck(w_oper_top="m/s", heigth_layer_top="m", g="m/s**2")
 def Fr_top(w_oper_top, heigth_layer_top):
     """
     Calculates the Frudo criterion at the top of column
@@ -233,6 +234,7 @@ def Fr_top(w_oper_top, heigth_layer_top):
     return w_oper_top**2 / (g * heigth_layer_top)
 
 
+@unitcheck(w_oper_bot="m/s", heigth_layer_bot="m", g="m/s**2")
 def Fr_bot(w_oper_bot, heigth_layer_bot):
     """
     Calculates the Frudo criterion at the bottom of column
@@ -337,4 +339,160 @@ def h_bubble_bot(heigth_layer_bot, epsi_vapor_bot):
     return heigth_layer_bot / (1 - epsi_vapor_bot)
 
 
+@unitcheck(Massl="g/mol", Massh="g/mol", mu_solv="Pa*s", nul="sm**3/mol", nuh="sm**3/mol", res_unit="m**2/s")
+def Diff_20(Massl, Massh, A , B, mu_solv, nul, nuh):
+    """
+    Calculates the diffusion coefficient at 20 degrees celcium.
+    Parameters
+    ----------
+    Massl : float
+        The molar mass of low-boilling component, [g/mol]
+    Massh : float
+        The molar mass of high-boilling component, [g/mol]
+    A : float
+        The correction coefficient depending on the properties solute, [dimensionless]
+    B : float
+        The correction coefficient depending on the properties solvent, [dimensionless]
+    mu_solv : float
+        The viscocity of solvent liquid, [Pa/s]
+    nul : float
+        The molar volume of solute, [sm**3/s]
+    nuh : float
+        The molar volume of solvent, [sm**3/s]
+    Returns
+    -------
+    Diff_20 : float
+        The diffusion coefficient at 20 degrees celcium, [m**2/s]
+    References
+    ----------
+    Романков, страница 289, формула 6.22
+    """
+    return 1e-6 * ((1/Massl) + (1/Massh))**0.5 / (A * B * mu_solv**0.5 * ((nul)**0.66 + (nuh)*0.66)**2)
+
+
+def b(mul_20, rhol_20):
+    """
+    Calculates the temperature coefficient.
+    Parameters
+    ----------
+    mul_20 : float
+        The viscocity of low-boilling component of liquid at 20 degrees celcium, [Pa/s]
+    rhol_20 : float
+        The destinity of low-boilling component of liquid at 20 degrees celcium, [kg/m**3]
+    Returns
+    -------
+    b : float
+        The temperature coefficient, [dimensionless]
+    References
+    ----------
+    Романков, страница 289, формула 6.24
+    """
+    return mul_20**0.5/rhol_20**0.66
+
+
+def Diff_liq(Diff_20, b, t_boil):
+    """
+    Calculates the diffusion coefficient of liquid phaze.
+    Parameters
+    ----------
+    calc_Diffcoef20 : float
+        The diffusion coefficient at 20 degrees celcium, [m**2/s]
+    b : float
+        The temperature coefficient, [dimensionless]
+    t_boil : float
+        The boiling temperature of liquid, [degrees celcium]
+    Returns
+    -------
+    Diff_liq : float
+        The diffusion coefficient of liquid phaze.
+    References
+    ----------
+    Романков, страница 289, формула 6.23
+    """
+    return Diff_20 * (1 + b * (t_boil - 20))
+
+
+@unitcheck(t_boil="K", Massl="g/mol", Massh="g/mol", P_abs="Pa", nul="sm**3/mol", nuh="sm**3/mol", res_unit="m**2/s")
+def Diff_vapor(t_boil, P_abs, Massl, Massh, nul, nuh):
+    """
+    Calculates the diffusion coefficient of vapor.
+    Parameters
+    ----------
+    Massl : float
+        The molar mass of the low-boilling component, [g/mol]
+    Massh : float
+        The molar mass of the high-boilling component, [g/mol]
+    t_boil : float
+        The boiling temperature of the low-boiling component, [K]
+    P : float
+        The absolute pressure of the column, [Pa]
+    nul : float
+        The molar volume of solute, [sm**3/s]
+    nuh : float
+        The molar volume of solvent, [sm**3/s]
+    Returns
+    -------
+    Diff_vapor : float
+        The diffusion coefficient of vapor, [m**2/s]
+    References
+    ----------
+    Романков, страница 234, формула 6.25
+    """
+    return 4.22e-2 * t_boil**(3/2) * ((1/Massl) + (1/Massh))**0.5 / (P_abs * ((nul)**0.66 + (nuh)*0.66)**2)
+
+
+def beta_liq(Diff_liq, epsi_vapor, U_coef, heigth_layer, mu_vapor, mu_mix):
+    """
+    Calculates the coefficient masstransfer of liquid.
+    Parameters
+    ----------
+    Diff_liq : float
+        The diffusion coefficient of liquid phaze.
+    epsi_vapor : float
+        The vapor content of bubble layer, [dimensionless]
+    heigth_layer : float
+        The heigth ligth layer of  the liquid, [m]
+    mu_mix : float
+        The mix viscocity of liquid, [Pa/s]
+    mu_vapor : float
+        The mix viscocity of vapor, [Pa/s]
+    U_coef : float
+        The specific coefficient for beta_liq equation.
+    Returns
+    -------
+    beta_liq : float
+        The coefficient masstransfer of liquid, [m/s]
+    References
+    ----------
+    Дытнерский, формула 6.37, стр.239
+    """              
+    return 6.24e+5 * (Diff_liq**0.5) * heigth_layer * ((U_coef/(1-epsi_vapor))**0.5) * (mu_vapor / (mu_vapor + mu_mix))**0.5
+
+
+def beta_vapor(Diff_vapor, w_oper, epsi_vapor, heigth_layer, Fc, mu_vapor, mu_mix):
+    """
+    Calculates the coefficient masstransfer of vapor.
+    Parameters
+    ----------
+    Diff_vapor : float
+        The diffusion coefficient of vapor phaze, []
+    epsi_vapor : float
+        The vapor content of bubble layer, [dimensionless]
+    heigth_layer : float
+        The heigth ligth layer of  the liquid, [m]
+    mu_mix : float
+        The mix viscocity of liquid, [Pa/s]
+    mu_vapor : float
+        The mix viscocity of vapor, [Pa/s]
+    Fc : float
+        The free section of a plate, [dimensionless]
+    Returns
+    -------
+    beta_vapor : float
+        The coefficient masstransfer of vapor, [m/s]
+    References
+    ----------
+    Дытнерский, формула 6.38, стр.239
+    """
+    return 6.24e+5 * Diff_vapor**0.5 * ((w_oper/epsi_vapor)**0.5) * heigth_layer * Fc * ((mu_vapor / (mu_vapor + mu_mix))**0.5)
 #endregion

@@ -492,7 +492,7 @@ def speed_limit_top(rho_top_liq, rho_top_vap):
     ----------
     Дытнерский, стр.205, формула 5.33
     """   
-    return 0.05 * ((rho_top_liq / rho_bot_vap)^0.5)
+    return 0.05 * ((rho_top_liq / rho_bot_vap)**0.5)
 
 
 #@unitcheck(rho_bot_liq="kg/m**3", rho_bot_vap="kg/m**3", res_unit="m/s" !!!!!!!!!!!)
@@ -513,7 +513,7 @@ def speed_limit_bot(rho_bot_liq, rho_bot_vap):
     ----------
     Дытнерский, стр.205, формула 5.33
     """   
-    return 0.05 * ((rho_top_liq / rho_bot_vap)^0.5)
+    return 0.05 * ((rho_top_liq / rho_bot_vap)*0.5)
 
 
 @unitcheck(G_top="kg/s", speed_limit_top="m/s", rho_top_vap="kg/m**3", res_unit="m")
@@ -536,7 +536,7 @@ def D_top(G_top, pi, speed_limit_top, rho_top_vap):
     ----------
     &&&&&
     """       
-    return (4 * G_top / (pi * speed_limit_top * rho_top_vap))^0.5
+    return (4 * G_top / (pi * speed_limit_top * rho_top_vap))**0.5
 
 
 @unitcheck(G_bot="kg/s", speed_limit_bot="m/s", rho_bot_vap="kg/m**3", res_unit="m")
@@ -559,7 +559,7 @@ def D_bot(G_bot, pi, speed_limit_bot, rho_bot_vap):
     ----------
     &&&&&
     """       
-    return (4 * G_bot / (pi * speed_limit_bot * rho_bot_vap))^0.5
+    return (4 * G_bot / (pi * speed_limit_bot * rho_bot_vap))**0.5
 
 
 @unitcheck(speed_limit_top="m/s", D_top="m", D="m", res_unit="m/s")

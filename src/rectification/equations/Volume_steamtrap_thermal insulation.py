@@ -123,7 +123,7 @@ def k_steamtrap_boiler(m_steam_boil, delta_P_boiler):
     ----------
     &&&&&&&&&&&&
     """        
-    return 0,575 * m_steam_boil / (delta_P_boiler)^(0,5)
+    return 0,575 * m_steam_boil / (delta_P_boiler)**(0,5)
 
 
 @unitcheck(m_steam_feed="t/h", delta_P_feed="MPa", res_unit="t/h")
@@ -144,6 +144,6 @@ def k_steamtrap_feed(m_steam_feed, delta_P_feed):
     ----------
     &&&&&&&&&&&&
     """        
-    return 0,575 * m_steam_feed / (delta_P_feed)^(0,5)
+    return 0,575 * m_steam_feed / (delta_P_feed)**(0,5)
 
 

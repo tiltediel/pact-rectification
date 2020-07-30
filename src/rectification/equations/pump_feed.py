@@ -52,6 +52,7 @@ def H_losses_feed(lyambda_rubbery, L_tube_feed, d_enter_feed, w_liq_real_enter_f
     return (lyambda_rubbery_feed*L_tube_feed/d_enter_feed)*(w_liq_real_enter_feed / 2*g) + epsi_local_resistance_sum_feed*w_liq_real_enter_feed / 2*g
 
 
+@unitcheck(lyambda_injection_feed="m", lyambda_heatexchanger_feed="m", res_unit="m")
 def lyambda_rubbery_feed(lyambda_injection_feed, lyambda_heatexchanger_feed):
     """
     Calculates the coefficient of rubbery.
@@ -72,7 +73,7 @@ def lyambda_rubbery_feed(lyambda_injection_feed, lyambda_heatexchanger_feed):
     return lyambda_injection_feed + lyambda_heatexchanger_feed
 
 
-
+@unitcheck(e_roughness_heatexchanger_feed="m", d_inner="m", res_unit="m")
 def lyambda_heatexchanger_feed(Re_feed, e_roughness_heatexchanger_feed, d_inner):
     """
     Calculates the coefficient of rubbery at the injection tube.
@@ -95,6 +96,7 @@ def lyambda_heatexchanger_feed(Re_feed, e_roughness_heatexchanger_feed, d_inner)
     return ((- 2 * np.log((e_roughness_heatexchanger_feed/d_inner)/3,7 + (6,81/Re_feed)**0,9))**(-1))**2
 
 
+@unitcheck(e_roughness_injection_feed="m", d_enter_feed_real="m", res_unit="m")
 def lyambda_injection_feed(Re_injection_feed, e_roughness_injection_feed, d_enter_feed_real):
     """
     Calculates the coefficient of rubbery at the injection tube.
@@ -117,6 +119,7 @@ def lyambda_injection_feed(Re_injection_feed, e_roughness_injection_feed, d_ente
     return - 2 * np.log((e_roughness_injection_feed/d_enter_feed_real)/3,7 + (6,81/Re_injection_feed)**0,9)
 
 
+@unitcheck(w_liq_real_enter_feed="m/s", d_enter_feed_real="m", rho_F_20="kg/m**3", mu_F_20="Pa/s")
 def Re_injection_feed(w_liq_real_enter_feed, rho_F_20, d_enter_feed_real, mu_F_20):
     """
     Calculates the Re criterion .
@@ -141,6 +144,7 @@ def Re_injection_feed(w_liq_real_enter_feed, rho_F_20, d_enter_feed_real, mu_F_2
     return w_liq_real_enter_feed * rho_F_20 * d_enter_feed_real / mu_F_20
 
 
+@unitcheck(H_losses_feed="m", H_geometric_high_feed="m", res_unit="m")
 def H_hydrohead_feed(H_losses_feed, H_geometric_high_feed):
     """
     Calculates the head of pump.
@@ -161,6 +165,7 @@ def H_hydrohead_feed(H_losses_feed, H_geometric_high_feed):
     return H_geometric_high_feed + H_losses_feed
 
 
+@unitcheck(Q_volume_feed="W", rho_F_avrg="kg/m**3", g="m/s**2", H_hydrohead_feed_real="m", res_unit="W")
 def N_power_feed(Q_volume_feed, rho_F_avrg, g, H_hydrohead_feed_real, nu_motor_efficiency, nu_supply_efficiency):
     """
     Calculates the power of pump.
@@ -187,6 +192,7 @@ def N_power_feed(Q_volume_feed, rho_F_avrg, g, H_hydrohead_feed_real, nu_motor_e
     return Q_volume_feed * rho_F_avrg * g * H_hydrohead_feed_real / (nu_motor_efficiency * nu_supply_efficiency)
 
 
+@unitcheck(dzeta_enter_feed="m", dzeta_turn90_feed="m", dzeta_ventil_feed="m", g="m/s**2", w_liq_real_enter_feed="m/s", res_unit="m")
 def hydraulic_losses_suct_feed(dzeta_enter_feed, dzeta_turn90_feed, n_turn90_feed, dzeta_ventil_feed, n_ventil_feed, g, w_liq_real_enter_feed):
     """
     Calculates the hydraulic losses of suction line.
@@ -215,6 +221,7 @@ def hydraulic_losses_suct_feed(dzeta_enter_feed, dzeta_turn90_feed, n_turn90_fee
     return ((dzeta_enter_feed + dzeta_turn90_feed + dzeta_ventil_feed) * w_liq_real_enter_feed/(2 * g))
 
 
+@unitcheck(Q_volume_feed="m**3/s", n_turnover="turnover/s", res_unit="m")
 def heigth_cavitation_feed(Q_volume_feed, n_turnover):
     """
     Calculates the losses due to cavitation.
@@ -234,6 +241,8 @@ def heigth_cavitation_feed(Q_volume_feed, n_turnover):
     """      
     return 0.3 * (Q_volume_feed * n_turnover**2)**(2/3)
 
+
+@unitcheck(Pa="Pa", rho_F_20="kg/m**3", g="m/s**2", P_satur_vapor_feed="Pa", w_liq_real_enter_feed="m/s", hydraulic_losses_suct_feed="m", heigth_cavitation_feed="m", res_unit="m")
 def heigth_max_suction(Pa, rho_F_20, g, P_satur_vapor_feed, w_liq_real_enter_feed, hydraulic_losses_suct_feed, heigth_cavitation_feed):
     """
     Calculates the maximum theoretical suction height.
