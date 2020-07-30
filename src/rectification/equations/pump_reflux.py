@@ -24,6 +24,7 @@ def Q_volume_reflux(reflux_mass, rho_reflux):
     """          
     return reflux_mass/rho_reflux
 
+
 def reflux_mass(P_mass, R):
     """
     Calculates the flow rate of reflux.
@@ -71,6 +72,7 @@ def H_losses_reflux(lyambda_rubbery_reflux, L_tube_reflux, d_enter_reflux, w_liq
     return (lyambda_rubbery_reflux*L_tube_reflux/d_enter_reflux)*(w_liq_real_enter_reflux / 2*g) + epsi_local_resistance_sum_reflux*w_liq_real_enter_reflux / 2*g
 
 
+@unitcheck(e_roughness_reflux="m", d_enter_reflux_real="m", res_unit="m")
 def lyambda_rubbery_reflux(Re_reflux, e_roughness_reflux, d_enter_reflux_real):
     """
     Calculates the coefficient of rubbery.
@@ -93,6 +95,7 @@ def lyambda_rubbery_reflux(Re_reflux, e_roughness_reflux, d_enter_reflux_real):
     return - 2 * np.log((e_roughness_reflux/d_enter_reflux_real)/3,7 + (6,81/Re_reflux)**0,9)
 
 
+@unitcheck(w_liq_real_enter_reflux="m/s", d_enter_reflux_real="m", rho_reflux="kg/m**3", mu_reflux="Pa/s")
 def Re_reflux(w_liq_real_enter_reflux, rho_reflux, d_enter_reflux_real, mu_reflux):
     """
     Calculates the Re criterion .
@@ -117,6 +120,7 @@ def Re_reflux(w_liq_real_enter_reflux, rho_reflux, d_enter_reflux_real, mu_reflu
     return w_liq_real_enter_reflux * rho_reflux * d_enter_reflux_real / mu_reflux
 
 
+@unitcheck(H_losses_reflux="m", H_geometric_high_reflux="m", res_unit="m")
 def H_hydrohead_reflux(H_losses_reflux, H_geometric_high_reflux):
     """
     Calculates the head of pump.
@@ -137,6 +141,7 @@ def H_hydrohead_reflux(H_losses_reflux, H_geometric_high_reflux):
     return H_geometric_high_reflux + H_losses_reflux
 
 
+@unitcheck(Q_volume_reflux="W", rho_reflux_avrg="kg/m**3", g="m/s**2", H_hydrohead_reflux_real="m", res_unit="W")
 def N_power_reflux(Q_volume_reflux, rho_reflux_avrg, g, H_hydrohead_reflux_real, nu_motor_efficiency, nu_supply_efficiency):
     """
     Calculates the power of pump.
@@ -163,6 +168,7 @@ def N_power_reflux(Q_volume_reflux, rho_reflux_avrg, g, H_hydrohead_reflux_real,
     return Q_volume_reflux * rho_reflux_avrg * g * H_hydrohead_reflux_real / (nu_motor_efficiency * nu_supply_efficiency)
 
 
+@unitcheck(dzeta_enter_reflux="m", dzeta_turn90_reflux="m", dzeta_ventil_reflux="m", g="m/s**2", w_liq_real_enter_reflux="m/s", res_unit="m")
 def hydraulic_losses_suct_reflux(dzeta_enter_reflux, dzeta_turn90_reflux, n_turn90_reflux, dzeta_ventil_reflux, n_ventil_reflux, g, w_liq_real_enter_reflux):
     """
     Calculates the hydraulic losses of suction line.
@@ -191,6 +197,7 @@ def hydraulic_losses_suct_reflux(dzeta_enter_reflux, dzeta_turn90_reflux, n_turn
     return ((dzeta_enter_reflux + dzeta_turn90_reflux + dzeta_ventil_reflux) * w_liq_real_enter_reflux/(2 * g))
 
 
+@unitcheck(Q_volume_reflux="m**3/s", n_turnover="turnover/s", res_unit="m")
 def heigth_cavitation_reflux(Q_volume_reflux, n_turnover):
     """
     Calculates the losses due to cavitation.
@@ -210,6 +217,8 @@ def heigth_cavitation_reflux(Q_volume_reflux, n_turnover):
     """      
     return 0.3 * (Q_volume_reflux * n_turnover**2)**(2/3)
 
+
+@unitcheck(Pa="Pa", rho_reflux_20="kg/m**3", g="m/s**2", P_satur_vapor_reflux="Pa", w_liq_real_enter_reflux="m/s", hydraulic_losses_suct_reflux="m", heigth_cavitation_reflux="m", res_unit="m")
 def heigth_max_suction(Pa, rho_reflux_20, g, P_satur_vapor_reflux, w_liq_real_enter_reflux, hydraulic_losses_suct_reflux, heigth_cavitation_reflux):
     """
     Calculates the maximum theoretical suction height.

@@ -4,6 +4,7 @@ import numpy as np
 
 
 
+@unitcheck(W_mass="kg/s", P_mass="kg/s", F_mass="kg/s", Cw="J/(kg * degrees celcium)", tw="degrees celcium", Cp="J/(kg * degrees celcium)", tp="degrees celcium", Cf="J/(kg * degrees celcium)", tf="degrees celcium", Q_deph="W", Q_loss="W", res_unit="W")
 def Q_boiler(W_mass, Cw, tw, P_mass, Q_deph,  F_mass, Cf, tf, Cp, tp, Q_loss):
     """
     Calculates the heat load of boiler.
@@ -40,6 +41,7 @@ def Q_boiler(W_mass, Cw, tw, P_mass, Q_deph,  F_mass, Cf, tf, Cp, tp, Q_loss):
     return W_mass * Cw * tw + Q_deph - F_mass * Cf * tf + P_mass * Cp * tp + Q_loss
 
 
+@unitcheck(Q_boiler="J/s", r_steam="J/kg", res_unit="kg/s")
 def m_steam_boil(Q_boiler, r_steam):
     """
     Calculates the flow rate steam of boiler.
@@ -103,6 +105,7 @@ def A_approx_boiler(Q_boiler, deltaT_boil, Kt_approx_boiler):
     return Q_boiler / (deltaT_boil * Kt_approx_boiler)
 
 
+@unitcheck(rho_cond="kg/m**3", r_steam="J/kg",  g="m/s**2", mu_cond="Pa/s", L_tube_boiler="m", lyambda_cond="W / (m * degrees celcium)")
 def A_boiler(rho_cond, r_steam, g, mu_cond, L_tube_boiler, lyambda_cond):
     """
     Calculates the coefficent A of boiler.
@@ -129,6 +132,7 @@ def A_boiler(rho_cond, r_steam, g, mu_cond, L_tube_boiler, lyambda_cond):
     return 1.21 * lyambda_cond * ((rho_cond**2) * r_steam * g / (mu_cond * L_tube_boiler))**(1/3)
 
 
+@unitcheck(rho_W_boil="kg/m**3", rho_W_vapor="kg/m**3", sigma_W_boil="N/m", r_W_boil="J/kg", Cw_boil="J/(kg * degrees celcium)", mu_W_boil="Pa/s", lyambda_W_boil="W / (m * degrees celcium)")
 def B_boiler(rho_W_boil, rho_W_vapor, sigma_W_boil, r_W_boil, Cw_boil, mu_W_boil, lyambda_W_boil):
     """
     Calculates the coefficent B of boiler.
@@ -143,7 +147,7 @@ def B_boiler(rho_W_boil, rho_W_vapor, sigma_W_boil, r_W_boil, Cw_boil, mu_W_boil
     sigma_W_boil : float
         The surface tension of waste at the boilling temperature, [N/m]
     r_W_boil : float
-        The heat vaporazation of waste at the boilling temperature, [N/m]    
+        The heat vaporazation of waste at the boilling temperature, [J/kg]    
     Cw_boiler : float
         The heat capacity of waste at the boiling temperature, [J/(kg * degrees C)]
     mu_W_boiler : float
@@ -156,7 +160,8 @@ def B_boiler(rho_W_boil, rho_W_vapor, sigma_W_boil, r_W_boil, Cw_boil, mu_W_boil
     ----------
     Дытнерский, формула 2.28, стр.54
     """                  
-    return 780 * lyambda_W_boil^(1.3) * rho_W_boil^(0.5) * rho_W_vapor^(0.06) / (sigma_W_boil^(0.5) * r_W_boil^(0.6) * rho_W_vapor^(0.66) * Cw_boil^(0.3) * mu_W_boil^(0.3))
+    return 780 * lyambda_W_boil**(1.3) * rho_W_boil**(0.5) * rho_W_vapor**(0.06) / (sigma_W_boil**(0.5) * r_W_boil**(0.6) * rho_W_vapor**(0.66) * Cw_boil**(0.3) * mu_W_boil**(0.3))
+
 
 @unitcheck(pollution_1_boiler="m**2 * degrees celcium / W", pollution_2_boiler="m**2 * degrees celcium / W", sigma_boiler="m",  lyambda_wall_boiler="W / (m * degrees celcium)", res_unit="m**2 * degrees celcium / W")
 def sigma_thermpollution_boiler(pollution_1_boiler, pollution_2_boiler, sigma_boiler, lyambda_wall_boiler):
@@ -183,6 +188,7 @@ def sigma_thermpollution_boiler(pollution_1_boiler, pollution_2_boiler, sigma_bo
     return (sigma_boiler / lyambda_wall_boiler) + (1 / pollution_1_boiler) + (1 / pollution_2_boiler)
 
 
+@unitcheck(Q_boiler="W", q_boiler="W/m**2", res_unit="m**2")
 def A_real_boiler(Q_boiler, q_boiler):
     """
     Calculates the boiler's real heatransfer area.
