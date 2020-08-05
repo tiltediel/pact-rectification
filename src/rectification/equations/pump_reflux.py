@@ -67,7 +67,7 @@ def H_losses_reflux(lyambda_rubbery_reflux, L_tube_reflux, d_enter_reflux, w_liq
         The hydraulic losses, [m]
     References
     ----------
-    ????? 
+    Романков, стр.26, формула 1.54
     """        
     return (lyambda_rubbery_reflux*L_tube_reflux/d_enter_reflux)*(w_liq_real_enter_reflux / 2*g) + epsi_local_resistance_sum_reflux*w_liq_real_enter_reflux / 2*g
 
@@ -90,9 +90,9 @@ def lyambda_rubbery_reflux(Re_reflux, e_roughness_reflux, d_enter_reflux_real):
         The coefficient of rubbery, [m]
     References
     ----------
-    ????? 
+    Романков, стр.25, формула 1.42 
     """       
-    return - 2 * np.log((e_roughness_reflux/d_enter_reflux_real)/3,7 + (6,81/Re_reflux)**0,9)
+    return ((- 2 * np.log((e_roughness_reflux/d_enter_reflux_real)/3,7 + (6,81/Re_reflux)**0,9))**(-1))**2
 
 
 @unitcheck(w_liq_real_enter_reflux="m/s", d_enter_reflux_real="m", rho_reflux="kg/m**3", mu_reflux="Pa/s")
@@ -115,7 +115,7 @@ def Re_reflux(w_liq_real_enter_reflux, rho_reflux, d_enter_reflux_real, mu_reflu
         The Re criterion, [dimensionless]
     References
     ----------
-    ????? 
+    Романков, стр.17, формула 1.21
     """       
     return w_liq_real_enter_reflux * rho_reflux * d_enter_reflux_real / mu_reflux
 
@@ -136,7 +136,7 @@ def H_hydrohead_reflux(H_losses_reflux, H_geometric_high_reflux):
         The head of pump, [m]
     References
     ----------
-    ????? 
+    Романков, стр. 65, формула 2.1 
     """        
     return H_geometric_high_reflux + H_losses_reflux
 
@@ -163,7 +163,7 @@ def N_power_reflux(Q_volume_reflux, rho_reflux_avrg, g, H_hydrohead_reflux_real,
         The power of pump, [W]
     References
     ----------
-    ????? 
+    Романков, стр. 66, формула 2.3
     """    
     return Q_volume_reflux * rho_reflux_avrg * g * H_hydrohead_reflux_real / (nu_motor_efficiency * nu_supply_efficiency)
 
@@ -213,7 +213,7 @@ def heigth_cavitation_reflux(Q_volume_reflux, n_turnover):
         The losses due to cavitation, [m]
     References
     ----------
-    &&&&
+    Дытнерский, стр.20, формула 1.37
     """      
     return 0.3 * (Q_volume_reflux * n_turnover**2)**(2/3)
 
@@ -242,6 +242,6 @@ def heigth_max_suction(Pa, rho_reflux_20, g, P_satur_vapor_reflux, w_liq_real_en
         The maximum theoretical suction height, [m]
     References
     ----------
-    &&&&
+    Дытнерский, стр.20, формула 1.36
     """
     return ((Pa/(rho_reflux_20 * g) - ((P_satur_vapor_reflux)/(rho_reflux_20 * g) + ((w_liq_real_enter_reflux / (2 * g))) + hydraulic_losses_suct_reflux + heigth_cavitation_reflux)))

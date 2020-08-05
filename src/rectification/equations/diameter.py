@@ -534,7 +534,7 @@ def D_top(G_top, pi, speed_limit_top, rho_top_vap):
         The top diameter of column, [m]
     References
     ----------
-    &&&&&
+    Романков, стр.321, формула 7.16
     """       
     return (4 * G_top / (pi * speed_limit_top * rho_top_vap))**0.5
 
@@ -557,7 +557,7 @@ def D_bot(G_bot, pi, speed_limit_bot, rho_bot_vap):
         The bottom diameter of column, [m]
     References
     ----------
-    &&&&&
+    Романков, стр.321, формула 7.16
     """       
     return (4 * G_bot / (pi * speed_limit_bot * rho_bot_vap))**0.5
 

@@ -22,9 +22,9 @@ def d_enter_feed(F_mass, rho_F_20, w_liq):
         The tube's diameter of enter to the heat exchanger of Feed, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return F_mass/(0,785*rho_F_20*w_liq)
+    return F_mass/(0,785 * rho_F_20 * w_liq)
 
 
 @unitcheck(F_mass="kg/s", rho_F_20="kg/m**3", d_enter_feed_real="m", res_unit="m/s")
@@ -45,9 +45,9 @@ def w_liq_real_enter_feed(F_mass, d_enter_feed_real, rho_F_20):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return F_mass/((d_enter_feed_real**2)*rho_F_20*0,785)
+    return F_mass/((d_enter_feed_real**2) * rho_F_20 * 0,785)
 
 
 @unitcheck(F_mass="kg/s", rho_F_tboil="kg/m**3", w_liq="m/s", res_unit="m")
@@ -68,9 +68,9 @@ def d_enter_feed_column(F_mass, rho_F_tboil, w_liq):
         The tube's diameter of enter to the column at the feed plate, [m]
     References
     ----------
-    &&&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return F_mass/(0,785*rho_F_tboil*w_liq)
+    return F_mass/(0,785 * rho_F_tboil * w_liq)
 
 
 @unitcheck(F_mass="kg/s", rho_F_tboil="kg/m**3", d_enter_feed_column_real="m", res_unit="m/s")
@@ -91,9 +91,9 @@ def w_liq_real_feed_column(F_mass, d_enter_feed_column_real, rho_F_tboil):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return F_mass/((d_enter_feed_column_real**2)*rho_F_tboil*0,785)
+    return F_mass/((d_enter_feed_column_real**2) * rho_F_tboil * 0,785)
 
 
 @unitcheck(G_mass="kg/s", rho_P_vapor="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -114,9 +114,9 @@ def d_out_dist(G_mass, rho_P_vapor, w_vapor):
         The tube's diameter of enter to the heat exchanger of Feed, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return G_mass/(0,785*rho_P_vapor*w_vapor)
+    return G_mass/(0,785 * rho_P_vapor * w_vapor)
 
 
 @unitcheck(G_mass="kg/s", rho_P_vapor="kg/m**3", d_out_dist_real="m", res_unit="m/s")
@@ -137,9 +137,9 @@ def w_vapor_real_out_dist(G_mass, d_out_dist_real, rho_P_vapor):
         The real speed of vapor at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return G_mass/((d_out_dist_real**2)*rho_P_vapor*0,785)
+    return G_mass/((d_out_dist_real**2) * rho_P_vapor * 0,785)
 
 
 @unitcheck(Reflux_mass="kg/s", rho_P_liq="kg/m**3", w_liq="m/s", res_unit="m")
@@ -160,9 +160,9 @@ def d_enter_reflux(Reflux_mass, rho_P_liq, w_liq):
         The tube's diameter of out vapor distilliat from column to dephlegmator, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return Reflux_mass/(0,785*rho_P_liq*w_liq)
+    return Reflux_mass/(0,785 * rho_P_liq * w_liq)
 
 
 @unitcheck(Reflux_mass="kg/s", rrho_P_liq="kg/m**3", d_enter_reflux_real="m", res_unit="m/s")
@@ -183,9 +183,9 @@ def w_enter_reflux_real(Reflux_mass, rho_P_liq, d_enter_reflux_real):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return Reflux_mass/((d_enter_reflux_real**2)*rho_P_liq*0,785)
+    return Reflux_mass/((d_enter_reflux_real**2) * rho_P_liq * 0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_W_liq="kg/m**3", w_liq_drift="m/s", res_unit="m")
@@ -206,9 +206,9 @@ def d_enter_waste_boiler(W_mass, rho_W_liq, w_liq_drift):
         The tube's diameter of enter waste to boiler from column, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/(0,785*rho_W_liq*w_liq_drift)
+    return W_mass/(0,785 * rho_W_liq * w_liq_drift)
 
 
 @unitcheck(W_mass="kg/s", rho_W_liq="kg/m**3", d_enter_waste_boiler_real="m", res_unit="m/s")
@@ -229,9 +229,9 @@ def w_enter_waste_boiler_real(W_mass, rho_W_liq, d_enter_waste_boiler_real):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/((d_enter_waste_boiler_real**2)*rho_W_liq*0,785)
+    return W_mass/((d_enter_waste_boiler_real**2) * rho_W_liq * 0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_W_vapor="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -252,9 +252,9 @@ def d_out_waste_boiler(W_mass, rho_W_vapor, w_vapor):
         The tube's diameter of out waste to column from boiler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/(0,785*rho_W_vapor*w_vapor)
+    return W_mass/(0,785 * rho_W_vapor * w_vapor)
 
 
 @unitcheck(W_mass="kg/s", rho_W_vapor="kg/m**3", d_out_waste_boiler_real="m", res_unit="m/s")
@@ -275,9 +275,9 @@ def w_out_waste_boiler_real(W_mass, rho_W_vapor, d_out_waste_boiler_real):
         The real speed of vapor at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/((d_out_waste_boiler_real**2)*rho_W_vapor*0,785)
+    return W_mass/((d_out_waste_boiler_real**2) * rho_W_vapor * 0,785)
 
 
 @unitcheck(m_steam_boil="kg/s", rho_steam="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -298,9 +298,9 @@ def d_enter_steam_boiler(m_steam_boil, rho_steam, w_vapor):
         The tube's diameter of out waste to column from boiler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_boil/(0,785*rho_steam*w_vapor)
+    return m_steam_boil/(0,785 * rho_steam * w_vapor)
 
 
 @unitcheck(m_steam_boil="kg/s", rho_steam_vapor="kg/m**3", d_enter_steam_boiler_real="m", res_unit="m/s")
@@ -321,9 +321,9 @@ def w_enter_steam_boiler_real(m_steam_boil, rho_steam_vapor, d_enter_steam_boile
         The real speed of vapor at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_boil/((d_enter_steam_boiler_real**2)*rho_steam_vapor*0,785)
+    return m_steam_boil/((d_enter_steam_boiler_real**2) * rho_steam_vapor * 0,785)
 
 
 @unitcheck(m_steam_boil="kg/s", rho_water_liq="kg/m**3", w_drift="m/s", res_unit="m")
@@ -344,9 +344,9 @@ def d_out_cond_boiler(m_steam_boil, rho_water_liq, w_drift):
         The tube's diameter of out waste to column from boiler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_boil/(0,785*rho_water_liq*w_drift)
+    return m_steam_boil/(0,785 * rho_water_liq * w_drift)
 
 
 @unitcheck(m_steam_boil="kg/s", rho_water_liq="kg/m**3", d_out_cond_boiler_real="m", res_unit="m/s")
@@ -367,9 +367,9 @@ def w_out_cond_boiler_real(m_steam_boil, rho_water_liq, d_out_cond_boiler_real):
         The real speed of condensat at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_boil/((d_out_cond_boiler_real**2)*rho_water_liq*0,785)
+    return m_steam_boil/((d_out_cond_boiler_real**2) * rho_water_liq * 0,785)
 
 
 @unitcheck(m_steam_feed="kg/s", rho_steam="kg/m**3", w_vapor="m/s", res_unit="m")
@@ -390,9 +390,9 @@ def d_enter_steam_feed(m_steam_feed, rho_steam, w_vapor):
         The tube's diameter of enter feed to column from heat exchanger, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_feed/(0,785*rho_steam*w_vapor)
+    return m_steam_feed/(0,785 * rho_steam * w_vapor)
 
 
 @unitcheck(m_steam_feed="kg/s", rho_steam_vapor="kg/m**3", d_enter_steam_feed_real="m", res_unit="m/s")
@@ -413,9 +413,9 @@ def w_enter_steam_feed_real(m_steam_feed, rho_steam_vapor, d_enter_steam_feed_re
         The real speed of vapor at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_feed/((d_enter_steam_feed_real**2)*rho_steam_vapor*0,785)
+    return m_steam_feed/((d_enter_steam_feed_real**2) * rho_steam_vapor * 0,785)
 
 
 @unitcheck(m_steam_feed="kg/s", rho_water_liq="kg/m**3", w_drift="m/s", res_unit="m")
@@ -436,9 +436,9 @@ def d_out_cond_feed(m_steam_feed, rho_water_liq, w_drift):
         The tube's diameter of out waste to column from heat exchanger, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_steam_feed/(0,785*rho_water_liq*w_drift)
+    return m_steam_feed/(0,785 * rho_water_liq * w_drift)
 
 
 @unitcheck(m_steam_feed="kg/s", rho_water_liq="kg/m**3", d_out_cond_feed_real="m", res_unit="m/s")
@@ -459,7 +459,7 @@ def w_out_cond_feed_real(m_steam_feed, rho_water_liq, d_out_cond_feed_real):
         The real speed of condensat at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
     return m_steam_feed/((d_out_cond_feed_real**2)*rho_water_liq*0,785)
 
@@ -482,9 +482,9 @@ def d_out_cond_deph(G_mass, rho_dist, w_drift):
         The tube's diameter of out distilliat from dephlegmator, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return G_mass/(0,785*rho_dist*w_drift)
+    return G_mass/(0,785 * rho_dist * w_drift)
 
 
 @unitcheck(G_mass="kg/s", rho_dist="kg/m**3", d_out_deph_real="m", res_unit="m/s")
@@ -505,9 +505,9 @@ def w_out_deph_real(G_mass,rho_dist, d_out_deph_real):
         The real speed of condensat at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return G_mass/((d_out_deph_real**2)*rho_dist*0,785)
+    return G_mass/((d_out_deph_real**2) *rho_dist * 0,785)
 
 
 @unitcheck(P_mass="kg/s", rho_dist="kg/m**3", w_drift="m/s", res_unit="m")
@@ -528,9 +528,9 @@ def d_enter_dist_cooler(P_mass, rho_dist, w_drift):
         The tube's diameter of enter distilliat to distilliat cooler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return P_mass/(0,785*rho_dist*w_drift)
+    return P_mass/(0,785 * rho_dist * w_drift)
 
 
 @unitcheck(P_mass="kg/s", rho_dist ="kg/m**3", d_enter_dist_cooler_real="m", res_unit="m/s")
@@ -551,9 +551,9 @@ def w_enter_dist_cooler_real(P_mass, rho_dist , d_enter_dist_cooler_real):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return P_mass/((d_enter_dist_cooler_real**2)*rho_dist *0,785)
+    return P_mass/((d_enter_dist_cooler_real**2) * rho_dist * 0,785)
 
 
 @unitcheck(P_mass="kg/s", rho_dist_cool="kg/m**3", w_drift="m/s", res_unit="m")
@@ -574,9 +574,9 @@ def d_out_dist_cooler(P_mass, rho_dist_cool, w_drift):
         The tube's diameter of out distilliat from distilliat cooler to distilliat volume, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return P_mass/(0,785*rho_dist_cool*w_drift)
+    return P_mass/(0,785 * rho_dist_cool * w_drift)
 
 
 @unitcheck(P_mass="kg/s", rho_dist_cool ="kg/m**3", d_out_dist_cooler_real="m", res_unit="m/s")
@@ -597,9 +597,9 @@ def w_out_dist_cooler_real(P_mass, rho_dist_cool , d_out_dist_cooler_real):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return P_mass/((d_out_dist_cooler_real**2)*rho_dist_cool *0,785)
+    return P_mass/((d_out_dist_cooler_real**2) * rho_dist_cool *0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_waste="kg/m**3", w_drift="m/s", res_unit="m")
@@ -620,9 +620,9 @@ def d_enter_waste_cooler(W_mass, rho_waste, w_drift):
         The tube's diameter of enter waste to waste cooler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/(0,785*rho_waste*w_drift)
+    return W_mass/(0,785 * rho_waste* w_drift)
 
 
 @unitcheck(W_mass="kg/s", rho_waste ="kg/m**3", d_enter_waste_cooler_real="m", res_unit="m/s")
@@ -643,9 +643,9 @@ def w_enter_waste_cooler_real(W_mass, rho_waste , d_enter_waste_cooler_real):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/((d_enter_waste_cooler_real**2)*rho_waste *0,785)
+    return W_mass/((d_enter_waste_cooler_real**2) * rho_waste * 0,785)
 
 
 @unitcheck(W_mass="kg/s", rho_waste_cool="kg/m**3", w_drift="m/s", res_unit="m")
@@ -666,9 +666,9 @@ def d_out_waste_cooler(W_mass, rho_waste_cool, w_drift):
         The tube's diameter of out waste from waste cooler to waste volume, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/(0,785*rho_waste_cool*w_drift)
+    return W_mass/(0,785 * rho_waste_cool * w_drift)
 
 
 @unitcheck(W_mass="kg/s", rho_waste_cool ="kg/m**3", d_out_waste_cooler_real="m", res_unit="m/s")
@@ -689,9 +689,9 @@ def w_out_waste_cooler_real(W_mass, rho_waste_cool , d_out_waste_cooler_real):
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return W_mass/((d_out_waste_cooler_real**2)*rho_waste_cool *0,785)
+    return W_mass/((d_out_waste_cooler_real**2) * rho_waste_cool * 0,785)
 
 
 @unitcheck(m_coolwater_dist="kg/s", rho_dist_coolwater="kg/m**3", w_liq="m/s", res_unit="m")
@@ -712,9 +712,9 @@ def d_dist_coolwater(m_coolwater_dist, rho_dist_coolwater, w_liq):
         The tube's diameter of enter and out cooling water to distilliat cooler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_coolwater_dist/(0,785*rho_dist_coolwater*w_liq)
+    return m_coolwater_dist/(0,785 * rho_dist_coolwater * w_liq)
 
 
 @unitcheck(m_coolwater_dist="kg/s", rho_dist_coolwater ="kg/m**3", d_dist_coolwater_real="m", res_unit="m/s")
@@ -735,7 +735,7 @@ def w_dist_coolwater_real(m_coolwater_dist, rho_dist_coolwater , d_dist_coolwate
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
     return m_coolwater_dist/((d_dist_coolwater_real**2)*rho_dist_coolwater *0,785)
 
@@ -758,9 +758,9 @@ def d_waste_coolwater(m_coolwater_waste, rho_waste_coolwater, w_liq):
         The tube's diameter of enter and out cooling water to waste cooler, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_coolwater_waste/(0,785*rho_waste_coolwater*w_liq)
+    return m_coolwater_waste/(0,785 * rho_waste_coolwater * w_liq)
 
 
 @unitcheck(m_coolwater_waste="kg/s", rho_waste_coolwater ="kg/m**3", d_waste_coolwater_real="m", res_unit="m/s")
@@ -781,9 +781,9 @@ def w_waste_coolwater_real(m_coolwater_waste, rho_waste_coolwater , d_waste_cool
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_coolwater_waste/((d_waste_coolwater_real**2)*rho_waste_coolwater *0,785)
+    return m_coolwater_waste/((d_waste_coolwater_real**2) * rho_waste_coolwater * 0,785)
 
 
 @unitcheck(m_coolwater_deph="kg/s", rho_deph_coolwater="kg/m**3", w_liq="m/s", res_unit="m")
@@ -804,9 +804,9 @@ def d_deph_coolwater(m_coolwater_deph, rho_deph_coolwater, w_liq):
         The tube's diameter of enter and out cooling water to dephlegmator, [m]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_coolwater_deph/(0,785*rho_deph_coolwater*w_liq)
+    return m_coolwater_deph/(0,785 * rho_deph_coolwater * w_liq)
 
 
 @unitcheck(m_coolwater_deph="kg/s", rho_deph_coolwater ="kg/m**3", d_deph_coolwater_real="m", res_unit="m/s")
@@ -827,7 +827,7 @@ def w_deph_coolwater_real(m_coolwater_deph, rho_deph_coolwater , d_deph_coolwate
         The real speed of liquid at the tube, [m/s]
     References
     ----------
-    &&&
+    Дытнерский, стр. 16, формула 1.8
     """  
-    return m_coolwater_deph/((d_deph_coolwater_real**2)*rho_deph_coolwater *0,785)
+    return m_coolwater_deph/((d_deph_coolwater_real**2) * rho_deph_coolwater * 0,785)
 
