@@ -66,7 +66,7 @@ def lyambda_fact_top(m_distrib, R):
         The factor of masstransfer, [dismensionless]
     References
     ----------
-    Дытнерский, стр.239 формула 6.35
+    Дытнерский, стр.239 формула 6.33
     """      
     return m_distrib * (R + 1) / R
 
@@ -92,7 +92,7 @@ def lyambda_fact_bot(m_distrib, R, P_mol, F_mol, phi):
         The factor of masstransfer, [dismensionless]
     References
     ----------
-    Дытнерский, стр.239 формула 6.35
+    Дытнерский, стр.239 формула 6.33
     """      
     return m_distrib * (P_mol * (R + 1) - F_mol*phi) / (P_mol * R + F_mol * (1- phi))
 
@@ -112,7 +112,7 @@ def Lt(D, Lc):
         The length way of liquid, [m]
     References
     ----------
-    &&&&
+    Дытнерский, стр.242
     """     
     return (D**2 - Lc**2)**(0.5)
 
@@ -128,11 +128,11 @@ def S(Lt, l):
         The length way of liquid of one slot mix, [m]
     Returns
     -------
-    Lt : float
+    S : float
         The S coefficient, [dismensionless]
     References
     ----------
-    &&&&
+    Дытнерский, стр.242
     """     
     return Lt / l
 
@@ -160,6 +160,6 @@ def H_column(H_bwplate, N_plates, Zt, Zl, H_cap, H_support):
         The S coefficient, [dismensionless]
     References
     ----------
-    &&&&
+    Дытнерский, стр.235, формула 6.26
     """       
     return ((N_plates - 1) * H_bwplate + Zt + Zl + H_cap + H_support)

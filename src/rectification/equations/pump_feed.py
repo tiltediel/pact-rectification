@@ -47,7 +47,7 @@ def H_losses_feed(lyambda_rubbery, L_tube_feed, d_enter_feed, w_liq_real_enter_f
         The hydraulic losses, [m]
     References
     ----------
-    ????? 
+    Романков, стр.26, формула 1.54 
     """        
     return (lyambda_rubbery_feed*L_tube_feed/d_enter_feed)*(w_liq_real_enter_feed / 2*g) + epsi_local_resistance_sum_feed*w_liq_real_enter_feed / 2*g
 
@@ -91,7 +91,7 @@ def lyambda_heatexchanger_feed(Re_feed, e_roughness_heatexchanger_feed, d_inner)
         The coefficient of rubbery at the line of heat exchanger, [m]
     References
     ----------
-    ????? 
+    Романков, стр.25, формула 1.42 
     """       
     return ((- 2 * np.log((e_roughness_heatexchanger_feed/d_inner)/3,7 + (6,81/Re_feed)**0,9))**(-1))**2
 
@@ -114,9 +114,9 @@ def lyambda_injection_feed(Re_injection_feed, e_roughness_injection_feed, d_ente
         The coefficient of rubbery at the injection tube, [m]
     References
     ----------
-    ????? 
+    Романков, стр.25, формула 1.42
     """       
-    return - 2 * np.log((e_roughness_injection_feed/d_enter_feed_real)/3,7 + (6,81/Re_injection_feed)**0,9)
+    return ((- 2 * np.log((e_roughness_injection_feed/d_enter_feed_real)/3,7 + (6,81/Re_injection_feed)**0,9))**(-1))**2
 
 
 @unitcheck(w_liq_real_enter_feed="m/s", d_enter_feed_real="m", rho_F_20="kg/m**3", mu_F_20="Pa/s")
@@ -139,7 +139,7 @@ def Re_injection_feed(w_liq_real_enter_feed, rho_F_20, d_enter_feed_real, mu_F_2
         The Re criterion, [dimensionless]
     References
     ----------
-    ????? 
+    Романков, стр.17, формула 1.21 
     """       
     return w_liq_real_enter_feed * rho_F_20 * d_enter_feed_real / mu_F_20
 
@@ -160,7 +160,7 @@ def H_hydrohead_feed(H_losses_feed, H_geometric_high_feed):
         The head of pump, [m]
     References
     ----------
-    ????? 
+    Романков, стр. 65, формула 2.1 
     """        
     return H_geometric_high_feed + H_losses_feed
 
@@ -187,7 +187,7 @@ def N_power_feed(Q_volume_feed, rho_F_avrg, g, H_hydrohead_feed_real, nu_motor_e
         The power of pump, [W]
     References
     ----------
-    ????? 
+    Романков, стр. 66, формула 2.3
     """    
     return Q_volume_feed * rho_F_avrg * g * H_hydrohead_feed_real / (nu_motor_efficiency * nu_supply_efficiency)
 
@@ -237,7 +237,7 @@ def heigth_cavitation_feed(Q_volume_feed, n_turnover):
         The losses due to cavitation, [m]
     References
     ----------
-    &&&&
+    Дытнерский, стр.20, формула 1.37
     """      
     return 0.3 * (Q_volume_feed * n_turnover**2)**(2/3)
 
@@ -266,6 +266,6 @@ def heigth_max_suction(Pa, rho_F_20, g, P_satur_vapor_feed, w_liq_real_enter_fee
         The maximum theoretical suction height, [m]
     References
     ----------
-    &&&&
+    Дытнерский, стр.20, формула 1.36
     """   
     return ((Pa/(rho_F_20 * g) - ((P_satur_vapor_feed)/(rho_F_20 * g) + ((w_liq_real_enter_feed / (2 * g))) + hydraulic_losses_suct_feed + heigth_cavitation_feed)))
